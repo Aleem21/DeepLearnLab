@@ -1,0 +1,8 @@
+function [ sample ] = bernoulli_sample( p )
+
+    function s = bs(p_)
+        
+    end
+
+end
+
