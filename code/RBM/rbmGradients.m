@@ -15,9 +15,9 @@ for i=1:batch_size
     E_k = E_k + h_k(i,:)' * v_k(i,:);
 end
 
-w_g = (E_0 - E_k)./batch_size
-w_v = (sum(batch,1) - sum(v_k,1))/batch_size;
-w_h = (sum(h_0,1) - sum(h_k,1))/batch_size;
+w_g = (E_0 - E_k)./batch_size;
+v_g = (sum(batch,1) - sum(v_k,1))/batch_size;
+h_g = (sum(h_0,1) - sum(h_k,1))/batch_size;
 
 end
 
