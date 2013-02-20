@@ -16,6 +16,9 @@ for i=1:batch_size
 end
 
 sparsity_grad = 0;
+% We are only updating the hidden biases.
+% Hinton's practical guide says we should update W as well. Might look
+% into that later
 if rbm.sparsity > 0
     % q_current is estimated from sample of hidden units. Could be weighted
     % sum of their expectation.
