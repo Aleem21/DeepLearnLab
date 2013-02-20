@@ -11,7 +11,7 @@ end
 data = round(double(data)/255);
 
 ndata = length(data);
-rbm = createRBM(784, 100, 'binary', .01);
+rbm = createRBM(784, 100, 'binary', .01, .05 , .5);
 
 % Create a random permutation of the data
 perm = randperm(ndata);
@@ -22,11 +22,13 @@ learn_rate = .1;
 nepochs = 15;
 nbatches = ceil(ndata/batch_size);
 
+q_old = -1;
+
 for e=1:nepochs
     tic
     for b=0:nbatches-1
-        [w,v,h] = rbmGradients(rbm, data(b*batch_size+1:...
-                                    min((b+1)*batch_size,ndata),:), 3);
+        [w,v,h, q_old] = rbmGradients(rbm, data(b*batch_size+1:...
+                            min((b+1)*batch_size,ndata),:), 1, q_old);
                                 
 
         rbm.W = rbm.W + learn_rate * w;
@@ -35,11 +37,11 @@ for e=1:nepochs
 
     end
     toc
-    
+    %{
     figure(e);
     im = rbmVisualize(rbm, 28, 28, 10,10,1);
     imshow(im);
-    
+    %}
 
 end
 
