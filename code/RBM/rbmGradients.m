@@ -1,4 +1,4 @@
-function [ w_g, v_g, h_g ] = rbmGradients( rbm, batch, k)
+function [ w_g, v_g, h_g ] = rbmGradients( rbm, batch, k, q_old)
 
 batch_size = size(batch,1);
 
@@ -15,9 +15,18 @@ for i=1:batch_size
     E_k = E_k + h_k(i,:)' * v_k(i,:);
 end
 
+sparsity_grad = 0;
+if rbm.sparsity > 0
+    % q_current is estimated from sample of hidden units. Could be weighted
+    % sum of their expectation.
+    sparsity_grad = rbm.sparsity_decay * q_old ...
+                    + (1 - rbm.sparsity_decay)*(sum(h_0, 1)/batch_size)...
+                    + -sparsity;
+end
+
 w_g = (E_0 - E_k)./batch_size;
 v_g = (sum(batch,1) - sum(v_k,1))/batch_size;
-h_g = (sum(h_0,1) - sum(h_k,1))/batch_size;
+h_g = (sum(h_0,1) - sum(h_k,1))/batch_size + sparsity_grad;
 
 end
 
