@@ -10,7 +10,7 @@ hbias = crbm.h_b;
 
 for k=1:crbm.n_maps
 %parfor k=1:crbm.n_maps
-    h_expected_k{k} = convcut(visible, kthMap(W,k)') + hbias(1,k);
+    h_expected_k{k} = convn(visible, kthMap(W,k)', 'valid') + hbias(1,k);
 end
 
 s = size(h_expected_k{1});

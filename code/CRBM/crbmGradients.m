@@ -17,8 +17,8 @@ if ndim == 3
         E_0 = zeros(w_size);
         E_k = zeros(w_size);
         for i=1:batch_size
-            E_0 = E_0 + convcut(visible, h_0(:,:,m,i)');
-            E_k = E_k + convcut(visible, h_k(:,:,m,i)');
+            E_0 = E_0 + convn(visible, h_0(:,:,m,i)', 'valid');
+            E_k = E_k + convn(visible, h_k(:,:,m,i)','valid');
         end
         w_g(:,:,m) = (1/(n_h*batch_size)) * (E_0 - E_k);
         
@@ -30,8 +30,8 @@ else
         E_0 = zeros(w_size);
         E_k = zeros(w_size);
         for i=1:batch_size
-                E_0 = E_0 + convcut(visible, h_0(:,:,:,m,i)');
-                E_k = E_k + convcut(visible, h_k(:,:,:,m,i)');
+                E_0 = E_0 + convn(visible, h_0(:,:,:,m,i)', 'valid');
+                E_k = E_k + convn(visible, h_k(:,:,:,m,i)', 'valid');
         end
         w_g(:,:,:,m) = (1/(n_h*batch_size)) * (E_0 - E_k);
     end
