@@ -9,9 +9,6 @@ E_k = zeros(rbm.n_h, rbm.n_v);
 
 for i=1:batch_size
     E_0 = E_0 + h_0(i,:)' * batch(i,:);
-end
-
-for i=1:batch_size
     E_k = E_k + h_k(i,:)' * v_k(i,:);
 end
 
@@ -28,9 +25,8 @@ end
 if rbm.sparsity > 0
     % q_current is estimated from sample of hidden units. Could be weighted
     % sum of their expectation.
-    sparsity_grad = rbm.sparsity_decay * q_old ...
-                    + (1 - rbm.sparsity_decay)*q_current...
-                    + -rbm.sparsity;
+    sparsity_grad = rbm.sparsity - (rbm.sparsity_decay * q_old ...
+                    + (1 - rbm.sparsity_decay)*q_current);
 end
 
 w_g = (E_0 - E_k)./batch_size;
