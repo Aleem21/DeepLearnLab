@@ -1,7 +1,6 @@
 function [ h_0, v_k, h_k ] = crbmSampleK( crbm, visible, k )
 
-h_0 = bernoulli_sample(crbmHExpectation(crbm, visible));
-
+h_0 = round(crbmHExpectation(crbm, visible));
 h_k = h_0;
 
 for i=1:k
