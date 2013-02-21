@@ -6,7 +6,7 @@ h_expected_k = cell(1, crbm.n_maps);
 
 % MATLAB suggests this to reduce overhead in parfor.
 W = crbm.W;
-hbias = crbm.hbias;
+hbias = crbm.h_b;
 
 parfor k=1:crbm.n_maps
     h_expected_k{k} = convcut(visible, kthMap(W,k)') + hbias(1,k);

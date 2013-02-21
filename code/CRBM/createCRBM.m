@@ -14,10 +14,10 @@ crbm.sparsity_decay = sparsity_decay;
 
 
 crbm.W = scale * rand([w_dim, n_maps]);
-crbm.hbias = scale * rand(1, n_maps); % maybe switch this to a value near
+crbm.h_b = scale * rand(1, n_maps); % maybe switch this to a value near
                                       % target sparsity                                      
 % currently all visual units have same bias. this is a terrible assumption
 % for power spectrum density.
-crbm.vbias = scale * rand(1);
+crbm.v_b = scale * rand(1);
 end
 
