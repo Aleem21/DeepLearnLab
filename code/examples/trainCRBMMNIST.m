@@ -1,4 +1,4 @@
-function [ crbm ] = trainCRBMMNIST(data_loc)
+function [ crbm ] = trainCRBMMNIST(data_loc, crbm)
 
 mnist = load(data_loc);
 
@@ -17,8 +17,9 @@ for i=1:ndata
     data(:,:,i) = reshape(data_(i,:), 28,28)';
 end
 
-
-crbm = createCRBM(40,'binary', .01, [28 28],[12 12], [2 2], .1 , .5);
+if nargin < 2
+    crbm = createCRBM(40,'binary', .01, [28 28],[12 12], [2 2], .1 , .5);
+end
 
 % Create a random permutation of the data
 perm = randperm(ndata);
@@ -26,7 +27,7 @@ data = data(:,:, perm);
 
 batch_size = 20;
 learn_rate = .1;
-nepochs = 1;
+nepochs = 15;
 nbatches = ceil(ndata/batch_size);
 
 q_old = -1;

@@ -1,15 +1,17 @@
-function [ im ] = crbmVisualize(crbm, n_high, n_wide, start_h )
+function [ im ] = crbmVisualize(e,crbm, n_high, n_wide, start_h )
 
 h = crbm.w_dim(1);
 w = crbm.w_dim(2);
 
-im = zeros(n_high * h, n_wide * w);
+%im = zeros(n_high * h, n_wide * w);
 W = (crbm.W - min(min(min(crbm.W))))/(max(max(max(crbm.W))) - min(min(min(crbm.W))));
 
 k=1;
-for m=0:n_high-1
-    for r=0:n_wide-1
-        im(m*h+1:(m+1)*h, r*w+1:(r+1)*w) = W(:,:,k);
+figure(e);
+for m=1:n_high
+    for r=1:n_wide
+        subplot(n_high, n_wide, k);
+        imshow(W(:,:,k));
         k=k+1;
     end
 end
