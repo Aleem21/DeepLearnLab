@@ -9,9 +9,14 @@ rbm.scale = scale;
 rbm.sparsity = sparsity;
 rbm.sparsity_decay = sparsity_decay;
 
+rbm.binary = true;
+if strcmp('binary', t_v)==0
+    rbm.binary = false;
+end
+
 rbm.v_b = scale * rand(1,n_v);
-rbm.h_b = 2 * sparsity * rand(1,n_h);
-rbm.W = scale * rand(n_h, n_v);
+rbm.h_b = scale  * rand(1,n_h);
+rbm.W = normrnd(zeros(n_h,n_v), .01);
 
 end
 
