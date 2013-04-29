@@ -16,9 +16,10 @@ function [ h_0, v_k, h_k ] = rbmSampleK(rbm, visible, k)
 %             kth sample of the hidden layer  
 
 % Compute the initial hidden sample
-h_k = bernoulli_sample(rbmHExpectation(rbm,visible));
+h_0 = bernoulli_sample(rbmHExpectation(rbm,visible));
 
-% Alternately sample the visible and hidden layers k  times  
+% Alternately sample the visible and hidden layers k  times 
+h_k = h_0;
 for i=1:k
     v_k = rbmVExpectation(rbm,h_k);
     h_k = rbmHExpectation(rbm, v_k);
