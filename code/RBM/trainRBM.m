@@ -1,6 +1,16 @@
 function [rbm ] = trainRBM( rbm, data, batch_size, nepochs, learn_rate)
-%TRAINRBM Summary of this function goes here
-%   Detailed explanation goes here
+% trainRBM( rbm, data, batch_size, nepochs, learn_rate) trains an
+% rbm based on the given parameters
+%
+% INPUTS:
+%   rbm.........: an rbm created by createRBM
+%   data........: (n x p) data matrix
+%   batch_size..: number of examples in each batch
+%   nepochs.....: number of times to go through the data
+%   learn_rate..: the learning rate of the training.
+%
+% OUTPUTS:
+%   rbm.........: the trained rbm
 
 
 ndata = length(data);
