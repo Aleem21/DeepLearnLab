@@ -1,4 +1,4 @@
-function [ rbm ] = trainRBMMNIST(rbm_old, data_loc)
+function [ rbm ] = trainRBMMNIST(data_loc)
 
 mnist = load(data_loc);
 
@@ -11,7 +11,7 @@ end
 data = double(data>128);
 
 ndata = length(data);
-rbm = rbm_old;%createRBM(784, 100, 'binary', .001, .001 , .1);
+rbm = createRBM(784, 100, 'binary', .001, .001 , .1);
 
 % Create a random permutation of the data
 perm = randperm(ndata);
