@@ -30,7 +30,9 @@ if strcmp('binary', t_v)==0
 end
 
 % Randomly generate biases and weights
-rbm.v_b = scale * rand(1,n_v);
+if rbm.binary
+    rbm.v_b = scale * rand(1,n_v);
+end
 rbm.h_b = scale  * rand(1,n_h);
 rbm.W = normrnd(zeros(n_h,n_v), .01);
 

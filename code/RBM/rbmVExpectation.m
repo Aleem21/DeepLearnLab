@@ -12,11 +12,11 @@ function [ v_expected ] = rbmVExpectation( rbm, hidden )
 %                 visible layer  
 
 % Compute the expectation of the visisble layer
-if rbm.binary
-    v_expected = sigmoid(hidden * rbm.W + repmat(rbm.v_b, size(hidden,1), 1));
-else
+%if rbm.binary
+%    v_expected = sigmoid(hidden * rbm.W + repmat(rbm.v_b, size(hidden,1), 1));
+%else
     v_expected = hidden * rbm.W; %+ repmat(rbm.v_b, size(hidden,1),1);
-end
+%end
 
 end
 
